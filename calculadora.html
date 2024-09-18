@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Simples</title>
+    <link rel="stylesheet" href="cal.css">
+</head>
+<body>
+    <h1>Calculadora</h1>
+    <input type="number" id="num1" placeholder="digite o valor 1">
+    <br>
+    <input type="number" id="num2" placeholder="digite o valor 2">
+    <br>
+    <button onclick="calculate('+')">+</button>
+    <button onclick="calculate('-')">-</button>
+    <button onclick="calculate('*')">*</button>
+    <button onclick="calculate('/')">/</button>
+    <button id="clear" onclick="clearFields()">C</button>
+    <div class="result" id="result">resultado: 0</div>
+    <script>
+        function calculate(operator) {
+            let num1 = parseFloat(document.getElementById('num1').value);
+            let num2 = parseFloat(document.getElementById('num2').value);
+            let result = 0;
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById('result').textContent = 'resultado: Erro';
+                return;
+            }
+            switch (operator) {
+                case '+':
+                    result = num1 + num2;
+                    break;
+                case '-':
+                    result = num1 - num2;
+                    break;
+                case '*':
+                    result = num1 * num2;
+                    break;
+                case '/':
+                    if (num2 === 0) {
+                        document.getElementById('result').textContent = 'resultado: Erro';
+                        return;
+                    }
+                    result = num1 / num2;
+                    break;
+            }
+            document.getElementById('result').textContent = 'resultado: ' + result;
+        }
+        function clearFields() {
+            document.getElementById('num1').value = '';
+            document.getElementById('num2').value = '';
+            document.getElementById('result').textContent = 'resultado: 0';
+        }
+    </script>
+</body>
+</html>
